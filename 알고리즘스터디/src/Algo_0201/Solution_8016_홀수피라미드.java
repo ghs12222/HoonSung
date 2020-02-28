@@ -14,10 +14,10 @@ public class Solution_8016_홀수피라미드 {
 		for (int t = 1; t <= T; t++) {
 			N = scann.nextInt();
 			int n, k;
-			n = 
+//			n =
 			
 			
-			System.out.println("#" + t+" "+n + " " + k);
+//			System.out.println("#" + t+" "+n + " " + k);
 		}
 	}
 

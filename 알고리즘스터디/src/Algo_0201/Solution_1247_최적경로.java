@@ -60,7 +60,7 @@ public class Solution_1247_최적경로 {
 		
 		for (int i = 0; i < n; i++) {
 			if ((flag & 1 << i) == 0) { 
-				map[count] = i + 1;
+//				map[count] = i + 1;
 				perm(n, r, flag | 1 << i, count + 1);
 			}
 			
