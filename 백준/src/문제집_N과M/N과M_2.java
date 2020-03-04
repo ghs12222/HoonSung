@@ -1,37 +1,44 @@
 package 문제집_N과M;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class N과M_2 {
-
-	static int N,M;
-	static int[] num;
-	static int[] flag;
 	
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+	static int N, M;
+	static int[] num;
+	static StringBuilder sb = new StringBuilder();
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+	
+		N = Integer.parseInt(st.nextToken());
+		M = Integer.parseInt(st.nextToken());
 		
-		N = sc.nextInt();
-		M = sc.nextInt();
 		num = new int[M];
-		flag = new int[N];
 		
-		combi(0,0);
+		Combi(0,0);
+		System.out.println(sb);
 	}
 
-	public static void combi(int start, int count) {
+	private static void Combi(int start, int count) {
 		if(count == M) {
 			for (int i = 0; i < M; i++) {
-				System.out.print(num[i]+" ");
+				sb.append(num[i]).append(" ");
 			}
-			System.out.println();
+			sb.append("\n");
 			return;
 		}
+		
 		for (int i = start; i < N; i++) {
 			num[count] = i+1;
-			combi(i+1,count+1);
+			Combi(i+1,count+1);
 		}
 		
 	}
-
+	
+	
 }

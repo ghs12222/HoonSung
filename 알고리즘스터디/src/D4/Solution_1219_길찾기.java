@@ -40,6 +40,7 @@ public class Solution_1219_±Ê√£±‚ {
 	}
 
 	private static void dfs(int x) {
+//		System.out.println("x = " + x);
 		if(num1[x] == 99 || num2[x] == 99) {
 			flag = true;
 			return;
