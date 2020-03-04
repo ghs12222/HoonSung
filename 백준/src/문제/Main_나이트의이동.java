@@ -1,4 +1,4 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_³ªÀÌÆ®ÀÇÀÌµ¿ {
+public class Main_ë‚˜ì´íŠ¸ì˜ì´ë™ {
 
 	static int T, N;
 	static int sx, sy, ex, ey;

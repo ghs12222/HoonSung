@@ -1,4 +1,4 @@
-package ¹®Á¦Áý_N°úM;
+package ë¬¸ì œì§‘_Nê³¼M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class N°úM_9 {
+public class Nê³¼M_9 {
 	
 	static int N, M, C;
 	static int[] num, list, cnt;

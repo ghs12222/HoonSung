@@ -2,7 +2,7 @@ package D4;
 
 import java.util.Scanner;
 
-public class Solution_1873_»óÈ£ÀÇ¹èÆ²ÇÊµå {
+public class Solution_1873_ìƒí˜¸ì˜ë°°í‹€í•„ë“œ {
 
 	static int T;
 	static int H;
@@ -24,8 +24,8 @@ public class Solution_1873_»óÈ£ÀÇ¹èÆ²ÇÊµå {
 			W = scann.nextInt();
 			map = new char[H][W];
 //			for(int i )
-			int d = 0; // ¹æÇâÀÇ ¹øÈ£
-			String s; // ÀÔ·Â°ª ¹Ş±â
+			int d = 0; // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È£
+			String s; // ï¿½Ô·Â°ï¿½ ï¿½Ş±ï¿½
 
 			for (int i = 0; i < H; i++) {
 				s = scann.next();
@@ -70,7 +70,7 @@ public class Solution_1873_»óÈ£ÀÇ¹èÆ²ÇÊµå {
 
 			for (int i = 0; i < N; i++) {
 
-				// ÅÊÅ© ÀÌµ¿
+				// ï¿½ï¿½Å© ï¿½Ìµï¿½
 				if (order[i] == 'U') {
 					d = 0;
 					map[y][x] = dir[d];

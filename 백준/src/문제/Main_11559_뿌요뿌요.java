@@ -1,4 +1,4 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_11559_»Ñ¿ä»Ñ¿ä {
+public class Main_11559_ë¿Œìš”ë¿Œìš” {
 
 	static char[][] map;
 	static boolean[][] flag;
@@ -30,8 +30,8 @@ public class Main_11559_»Ñ¿ä»Ñ¿ä {
 			}
 		}
 		
-		cnt = 0;		//¾îµð¼­ ÇØÁÖÁö?
-		end = false;	//¾îµð¼­ ÇØÁÖÁö?
+		cnt = 0;		//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
+		end = false;	//ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½?
 		while(!end) {
 			for (int i = 0; i < 12; i++) {
 				for (int j = 0; j < 6; j++) {

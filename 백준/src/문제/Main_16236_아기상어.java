@@ -1,11 +1,11 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Main_16236_¾Æ±â»ó¾î {
+public class Main_16236_ì•„ê¸°ìƒì–´ {
 
 	static int N;
 	static int[][] map;

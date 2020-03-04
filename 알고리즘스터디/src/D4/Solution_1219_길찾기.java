@@ -2,7 +2,7 @@ package D4;
 
 import java.util.Scanner;
 
-public class Solution_1219_±æÃ£±â {
+public class Solution_1219_ê¸¸ì°¾ê¸° {
 
 	static int T=10;
 	static int[] num1;

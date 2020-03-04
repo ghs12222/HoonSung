@@ -1,11 +1,11 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Main_2583_¿µ¿ª±¸ÇÏ±â {
+public class Main_2583_ì˜ì—­êµ¬í•˜ê¸° {
 
 	static int M, N, K;
 	static int cnt , cntsize;

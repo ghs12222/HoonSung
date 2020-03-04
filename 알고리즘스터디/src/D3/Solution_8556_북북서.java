@@ -3,7 +3,7 @@ package D3;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Solution_8556_�Ϻϼ� {
+public class Solution_8556_북북서 {
 
 	static int T;
 	static String s;

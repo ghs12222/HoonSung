@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class Solution_5948_»õ»ùÀÌÀÇ735°ÔÀÓ {
+public class Solution_5948_ìƒˆìƒ˜ì´ì˜735ê²Œì„ {
 
 	static int T;
 	static int[] num;

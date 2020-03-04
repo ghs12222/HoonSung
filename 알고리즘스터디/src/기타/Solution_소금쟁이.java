@@ -1,8 +1,8 @@
-package ±âÅ¸;
+package ê¸°íƒ€;
 
 import java.util.Scanner;
 
-public class Solution_¼Ò±İÀïÀÌ {
+public class Solution_ì†Œê¸ˆìŸì´ {
 
 	static int[] dx = { 0, 0, 0, -1, 1 };
 	static int[] dy = { 0, -1, 1, 0, 0 };

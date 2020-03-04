@@ -1,4 +1,4 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_6593_»ó¹üºôµù {
+public class Main_6593_ìƒë²”ë¹Œë”© {
 
 	static int L, R, C;
 	static char[][][] map;

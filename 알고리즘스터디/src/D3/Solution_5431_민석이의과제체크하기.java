@@ -1,6 +1,6 @@
 package D3;
 import java.util.Scanner;
-public class Solution_5431_¹Î¼®ÀÌÀÇ°úÁ¦Ã¼Å©ÇÏ±â{
+public class Solution_5431_ë¯¼ì„ì´ì˜ê³¼ì œì²´í¬í•˜ê¸°{
     static void func() {
         for(int i = 0 ; i < N; i++) {
             if(matrix[i]==false)

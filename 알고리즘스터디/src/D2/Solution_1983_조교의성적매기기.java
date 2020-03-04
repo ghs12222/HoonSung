@@ -2,7 +2,7 @@ package D2;
 
 import java.util.Scanner;
 
-public class Solution_1983_Á¶±³ÀÇ¼ºÀû¸Å±â±â {
+public class Solution_1983_ì¡°êµì˜ì„±ì ë§¤ê¸°ê¸° {
 	
 	static int T;
 	static int N;

@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Solution_1868_ÆÄÇÎÆÄÇÎÁö·ÚÃ£±â {
+public class Solution_1868_íŒŒí•‘íŒŒí•‘ì§€ë¢°ì°¾ê¸° {
 
 	static int T, N;
 	static char[][] cmap;

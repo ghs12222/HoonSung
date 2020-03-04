@@ -1,4 +1,4 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_2206_º®ºÎ¼ö°íÀÌµ¿ÇÏ±â {
+public class Main_2206_ë²½ë¶€ìˆ˜ê³ ì´ë™í•˜ê¸° {
 
 	static int N, M;
 	static int[][] map, cntmap;

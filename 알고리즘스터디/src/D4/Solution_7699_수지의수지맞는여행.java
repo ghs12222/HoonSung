@@ -3,7 +3,7 @@ package D4;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Solution_7699_¼öÁöÀÇ¼öÁö¸Â´Â¿©Çà {
+public class Solution_7699_ìˆ˜ì§€ì˜ìˆ˜ì§€ë§ëŠ”ì—¬í–‰ {
 
 	static int T, R, C;
 	static char[][] map;

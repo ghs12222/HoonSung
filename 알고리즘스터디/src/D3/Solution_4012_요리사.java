@@ -3,7 +3,7 @@ package D3;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Solution_4012_¿ä¸®»ç {
+public class Solution_4012_ìš”ë¦¬ì‚¬ {
 	
 	static int[][] S;
 	static int[] cnt;
@@ -38,7 +38,7 @@ public class Solution_4012_¿ä¸®»ç {
 //			}
 			
 			Combi(cnt.length, 2, 0, 0);
-			System.out.println("´ä:"+res);
+			System.out.println("ï¿½ï¿½:"+res);
 		}
 	
 	}

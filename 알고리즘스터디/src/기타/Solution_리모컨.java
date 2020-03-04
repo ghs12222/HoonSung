@@ -1,8 +1,8 @@
-package ±âÅ¸;
+package ê¸°íƒ€;
 
 import java.util.Scanner;
 
-public class Solution_¸®¸ğÄÁ {
+public class Solution_ë¦¬ëª¨ì»¨ {
 
 	static int start, end;
 	static int cnt;

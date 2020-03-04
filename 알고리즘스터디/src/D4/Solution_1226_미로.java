@@ -2,7 +2,7 @@ package D4;
 
 import java.util.Scanner;
 
-public class Solution_1226_¹Ì·Î {
+public class Solution_1226_ë¯¸ë¡œ {
 
 	static int T = 10;
 	static int[][] map;

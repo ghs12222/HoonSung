@@ -1,4 +1,4 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.util.LinkedList;
 import java.util.PriorityQueue;
@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 import javax.swing.plaf.synth.SynthSeparatorUI;
 
-public class Main_16236_¾Æ±â»ó¾î2 {
+public class Main_16236_ì•„ê¸°ìƒì–´2 {
 
 	static int N;
 	static int[][] map;

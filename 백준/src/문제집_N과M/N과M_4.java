@@ -1,11 +1,11 @@
-package ¹®Á¦Áý_N°úM;
+package ë¬¸ì œì§‘_Nê³¼M;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class N°úM_4 {
+public class Nê³¼M_4 {
 	
 	static int N, M;
 	static int[] num;

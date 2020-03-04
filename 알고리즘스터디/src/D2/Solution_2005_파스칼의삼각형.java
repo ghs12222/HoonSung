@@ -2,7 +2,7 @@ package D2;
 
 import java.util.Scanner;
 
-public class Solution_2005_�Ľ�Į�ǻﰢ�� {
+public class Solution_2005_파스칼의삼각형 {
 
 	static int T;
 	static int N;

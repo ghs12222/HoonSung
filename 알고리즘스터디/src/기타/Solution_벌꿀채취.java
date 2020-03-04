@@ -1,10 +1,10 @@
-package ±âÅ¸;
+package ê¸°íƒ€;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Solution_¹ú²ÜÃ¤Ãë {
+public class Solution_ë²Œê¿€ì±„ì·¨ {
 
 	static int T, N, K;
 	static int[][] map;

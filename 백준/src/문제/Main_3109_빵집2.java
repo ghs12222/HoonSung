@@ -1,8 +1,8 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.util.Scanner;
 
-public class Main_3109_»§Áý2 {
+public class Main_3109_ë¹µì§‘2 {
 
 	static int R, C;
 	static char[][] map;

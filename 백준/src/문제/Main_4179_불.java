@@ -1,10 +1,10 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Main_4179_ºÒ {
+public class Main_4179_ë¶ˆ {
 
 	static int R, C;
 	static char[][] map;

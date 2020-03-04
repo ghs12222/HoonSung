@@ -3,7 +3,7 @@ package D2;
 import java.util.Scanner;
 
 
-public class Solution_2007_ÆĞÅÏ¸¶µğÀÇ±æÀÌ {
+public class Solution_2007_íŒ¨í„´ë§ˆë””ì˜ê¸¸ì´ {
 
 	static int T;
 	static char[] ch;

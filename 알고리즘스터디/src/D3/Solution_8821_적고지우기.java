@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
-public class Solution_8821_Àû°íÁö¿ì±â {
+public class Solution_8821_ì ê³ ì§€ìš°ê¸° {
 
 	static int T;
 	static String S;

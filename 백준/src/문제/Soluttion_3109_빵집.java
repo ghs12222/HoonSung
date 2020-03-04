@@ -1,8 +1,8 @@
-package ¹®Á¦;
+package ë¬¸ì œ;
 
 import java.util.Scanner;
 
-public class Soluttion_3109_»§Áý {
+public class Soluttion_3109_ë¹µì§‘ {
 
 	static int R, C;
 	static char[][] tempmap;

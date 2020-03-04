@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 
-public class Solution_1249_º¸±Þ·Î {
+public class Solution_1249_ë³´ê¸‰ë¡œ {
 
 	static int T, N;
 	static int[][] map, min;
