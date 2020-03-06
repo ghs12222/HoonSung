@@ -8,10 +8,11 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class N과M_복습 {
-	
+public class N과M_12 {
+
 	static int N, M;
-	static int[] num, cnt, list;
+	static int[] cnt, list;
+	static boolean[] flag;
 	static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws IOException {
@@ -22,24 +23,23 @@ public class N과M_복습 {
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		
-		num = new int[10001];
+		flag = new boolean[10001];
 		cnt = new int[M];
 		list = new int[N];
-		int c = 0;
+		int c=0;
 		st = new StringTokenizer(br.readLine());
 		for (int i = 0; i < N; i++) {
 			int k = Integer.parseInt(st.nextToken());
-			if(num[k] == 0) {
+			if(!flag[k]) {
 				list[c] = k;
 				c++;
+				flag[k] = true;
 			}
-			num[k]++;
 		}
 		
 		Arrays.sort(list);
 		Combi(0,0);
-		bw.write(sb.toString());
-		bw.close();
+		System.out.println(sb);
 	}
 
 	private static void Combi(int start, int count) {
@@ -52,12 +52,12 @@ public class N과M_복습 {
 		}
 		
 		for (int i = start; i < N; i++) {
-			if(list[i] != 0 && num[list[i]] !=0) {
+			if(list[i] != 0) {
 				cnt[count] = list[i];
-				num[list[i]]--;
 				Combi(i,count+1);
-				num[list[i]]++;
 			}
 		}
+		
 	}
+
 }

@@ -8,8 +8,8 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class N과M_복습 {
-	
+public class N과M_11 {
+
 	static int N, M;
 	static int[] num, cnt, list;
 	static StringBuilder sb = new StringBuilder();
@@ -25,8 +25,9 @@ public class N과M_복습 {
 		num = new int[10001];
 		cnt = new int[M];
 		list = new int[N];
-		int c = 0;
+		
 		st = new StringTokenizer(br.readLine());
+		int c = 0;
 		for (int i = 0; i < N; i++) {
 			int k = Integer.parseInt(st.nextToken());
 			if(num[k] == 0) {
@@ -37,12 +38,17 @@ public class N과M_복습 {
 		}
 		
 		Arrays.sort(list);
-		Combi(0,0);
+		for (int i = 0; i < N; i++) {
+			System.out.println(list[i]);
+		}
+		Permi(0);
 		bw.write(sb.toString());
 		bw.close();
+		
+		
 	}
 
-	private static void Combi(int start, int count) {
+	private static void Permi(int count) {
 		if(count == M) {
 			for (int i = 0; i < M; i++) {
 				sb.append(cnt[i]).append(" ");
@@ -50,14 +56,14 @@ public class N과M_복습 {
 			sb.append("\n");
 			return;
 		}
-		
-		for (int i = start; i < N; i++) {
-			if(list[i] != 0 && num[list[i]] !=0) {
+
+		for (int i = 0; i < N; i++) {
+			if(list[i] != 0) {
 				cnt[count] = list[i];
-				num[list[i]]--;
-				Combi(i,count+1);
-				num[list[i]]++;
+				Permi(count+1);
 			}
 		}
+	
 	}
+
 }
