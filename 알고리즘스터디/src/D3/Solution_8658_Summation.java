@@ -37,9 +37,5 @@ public class Solution_8658_Summation {
 			sb.append("#"+t+" "+res[9]+" "+res[0]+"\n");
 		}
 		System.out.println(sb);
-		
-		
-		
 	}
-
 }
