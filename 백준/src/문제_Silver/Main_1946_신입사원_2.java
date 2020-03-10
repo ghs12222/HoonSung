@@ -3,77 +3,80 @@ package 문제_Silver;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main_1946_신입사원_2 {
-
+	
 	static int T, N;
-	static boolean[] flag, possible;
-	static int[] num1, num2;
-	static int[] cnt;
-	static int target, bigyo, res;
+	static int[] num;
+	static int cnt, min;
+	static PriorityQueue<Point> que;
 	static StringBuilder sb = new StringBuilder();
-
+	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-
+		que = new PriorityQueue<Point>();
+		
 		T = Integer.parseInt(st.nextToken());
-
-		for (int t = 0; t < T; t++) {
+		for (int t = 1; t <= T; t++) {
 			N = Integer.parseInt(br.readLine());
-
-			num1 = new int[N];
-			num2 = new int[N];
-			flag = new boolean[N];
-			possible = new boolean[N];
-			cnt = new int[2];
-
+			num = new int[N];
+			
 			for (int i = 0; i < N; i++) {
 				st = new StringTokenizer(br.readLine());
-				num1[i] = Integer.parseInt(st.nextToken());
-				num2[i] = Integer.parseInt(st.nextToken());
+				int n1 = Integer.parseInt(st.nextToken());
+				int n2 = Integer.parseInt(st.nextToken());
+				que.add(new Point(n1,n2));
 			}
-
-//			for (int i = 0; i < N; i++) {
-//				System.out.println("num1["+i+"] = " + num1[i] + ", num2["+i+"] = " + num2[i]);
-//			}
-			res = 0;
-			Combi(0, 0);
-
+			
+			cnt = 1;
+			min = Integer.MAX_VALUE;
+			
 			for (int i = 0; i < N; i++) {
-				if (!possible[i])
-					res++;
+				System.out.println(que.poll().toString());
 			}
-			System.out.println(res);
+			
+//			for (int i = 0; i < N; i++) {
+//				if(min>num[i]) {
+//					min = num[i];
+//				}
+//				if(min == 1)
+//					break;
+//				if(min>num[i+1]) {
+//					cnt++;
+//				}
+//			}
+			sb.append(cnt).append("\n");
 		}
-
+		System.out.println(sb);
 	}
-
-	private static void Combi(int start, int count) {
-
-		if (count == 2) {
-			if (num1[cnt[0]] > num1[cnt[1]]) {
-				if (num2[cnt[0]] > num2[cnt[1]]) {
-					possible[cnt[0]] = true;
-				}
-			}
-			if (num1[cnt[0]] < num1[cnt[1]]) {
-				if (num2[cnt[0]] < num2[cnt[1]]) {
-					possible[cnt[1]] = true;
-				}
-			}
-			return;
+	
+	private static class Point implements Comparable<Point> {
+		int n1;
+		int n2;
+		
+		public Point(int n1, int n2) {
+			super();
+			this.n1 = n1;
+			this.n2 = n2;
 		}
 
-		for (int i = start; i < N; i++) {
-			if (possible[i])
-				continue;
-			cnt[count] = i;
-			Combi(i + 1, count + 1);
-
+		
+		@Override
+		public String toString() {
+			return "Point [n1=" + n1 + ", n2=" + n2 + "]";
 		}
 
+
+		@Override
+		public int compareTo(Point target) {
+			if(this.n1 > target.n1)
+				return 1;
+			else
+				return 0;
+		}
+		
 	}
-
 }

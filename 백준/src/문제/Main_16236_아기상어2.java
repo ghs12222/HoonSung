@@ -36,13 +36,6 @@ public class Main_16236_아기상어2 {
 			}
 		}
 		
-		for (int i = 0; i < N; i++) {
-			for (int j = 0; j < N; j++) {
-				System.out.print(map[i][j]);
-			}
-			System.out.println();
-		}
-		
 		agisize = 2;
 		sizecnt = 0;
 		time = 0;
@@ -76,16 +69,6 @@ public class Main_16236_아기상어2 {
 							flag[iy][ix] = true;
 							que.clear();
 							que.add(new Point(iy,ix));
-							
-							System.out.println();
-							for (int i = 0; i < N; i++) {
-								for (int j = 0; j < N; j++) {
-									System.out.print(map[i][j]);
-								}
-								System.out.println();
-							}
-							System.out.println("time = " + time + ", timecnt = " + timecnt+", agisize = "+agisize);
-							System.out.println();
 							eat = true;
 							break;
 						}
@@ -95,20 +78,9 @@ public class Main_16236_아기상어2 {
 					break;
 				}
 				timecnt++;
-				System.out.println("timecnt = " + timecnt);
-				for (int i = 0; i < N; i++) {
-					for (int j = 0; j < N; j++) {
-						if(flag[i][j])
-							System.out.print("O");
-						else
-							System.out.print("X");
-					}
-					System.out.println();
-				}
 			}
 		}
-		System.out.println("time = " + time);
-		
+		System.out.println(time);
 	}
 	
 	private static boolean safe(int y, int x) {
@@ -129,19 +101,32 @@ public class Main_16236_아기상어2 {
 		}
 		@Override
 		public int compareTo(Point o) {
-			if(this.y < o.y) {
-				if(this.x <o.x)
+			if(this.y > o.y) 
+				return 1;
+			else if (this.y == o.y) {
+				if(this.x > o.x) 
 					return 1;
 				else
 					return -1;
 			}
+			else
+				return -1;
 			
-			else {
-				if(this.x <o.x)
-					return 1;
-				else
-					return -1;
-			}
+			
+			
+//			if(this.y < o.y) {
+//				if(this.x <o.x)
+//					return 1;
+//				else
+//					return -1;
+//			}
+//			
+//			else {
+//				if(this.x <o.x)
+//					return 1;
+//				else
+//					return -1;
+//			}
 		}
 		
 	}
