@@ -7,24 +7,27 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class ing {
+public class ing2 {
 
 	static int N, M;
-	static int[][] map;
+	static int[][] map, cntmap;
 	static boolean[][] flag, bflag;
 	static int[] dx = { 0, 1, 0, -1 };
 	static int[] dy = { -1, 0, 1, 0 };
 	static int step;
 	static Queue<Point> que;
+	static Queue<Point> boomque;
 
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
 		que = new LinkedList<Point>();
+		boomque = new LinkedList<Point>();
 
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
 		map = new int[N][M];
+		cntmap = new int[N][M];
 
 		flag = new boolean[N][M];
 		bflag = new boolean[N][M];
@@ -39,7 +42,7 @@ public class ing {
 		step = 0;
 		flag[0][0] = true;
 		bflag[0][0] = true;
-		que.add(new Point(0, 0, 1, false));
+		que.add(new Point(0, 0, 0, false));
 		while (!que.isEmpty()) {
 			int count = que.size();
 			for (int i = 0; i < count; i++) {
@@ -74,7 +77,9 @@ public class ing {
 					else if (p.boom && !bflag[iy][ix]) {
 						if (map[iy][ix] == 0) {
 							bflag[iy][ix] = true;
-							que.add(new Point(iy, ix, p.depth + 1, true));
+							boomque.add(new Point(iy, ix, p.depth + 1, true));
+							bflag = new boolean[N][M];
+							bflag[iy][ix] = true;
 						}
 					}
 				}
@@ -82,9 +87,11 @@ public class ing {
 		}
 		
 		if (step != 0) {
+			step++;
 			System.out.println(step);
 		} else if (step == 0)
 			System.out.println("-1");
+
 	}
 
 	private static boolean safe(int y, int x) {

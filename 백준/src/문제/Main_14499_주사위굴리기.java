@@ -60,13 +60,18 @@ public class Main_14499_주사위굴리기 {
 
 			if (safe(iy, ix)) {
 				// 움직이는 곳이 0일때
+				for (int i = 0; i < 6; i++) {
+					System.out.print("dice"+i+" = "+p.value[i] + ", ");
+				}
+				System.out.println();
 				if (map[iy][ix] == 0) {
 					map[iy][ix] = p.value[5];
 					sb.append(p.value[0]).append("\n");
 				}
 
 				else {
-					p.dicestate(movedir[d]);
+//					p.dicestate(movedir[d]);
+					dicestate(p, movedir[d]);
 					p.value[5] = map[iy][ix];
 					sb.append(p.value[0]).append("\n");
 				}
@@ -74,6 +79,36 @@ public class Main_14499_주사위굴리기 {
 				p.x += ix;
 				p.y += iy;
 			}
+		}
+	}
+	
+	private static void dicestate(Point p, int dir) {
+		int tmp0 = p.value[0];
+		int tmp1 = p.value[1];
+		int tmp2 = p.value[2];
+		int tmp3 = p.value[3];
+		int tmp4 = p.value[4];
+		int tmp5 = p.value[5];
+		if (dir == 0) {
+			p.value[0] = tmp3;
+			p.value[3] = tmp5;
+			p.value[5] = tmp2;
+			p.value[2] = tmp0;
+		} else if (dir == 1) {
+			p.value[0] = tmp2;
+			p.value[2] = tmp5;
+			p.value[5] = tmp3;
+			p.value[3] = tmp0;
+		} else if (dir == 2) {
+			p.value[0] = tmp4;
+			p.value[4] = tmp5;
+			p.value[5] = tmp1;
+			p.value[1] = tmp0;
+		} else if (dir == 3) {
+			p.value[0] = tmp1;
+			p.value[1] = tmp5;
+			p.value[5] = tmp4;
+			p.value[4] = tmp0;
 		}
 	}
 
@@ -98,35 +133,35 @@ public class Main_14499_주사위굴리기 {
 			this.value = value;
 		}
 
-		private void dicestate(int dir) {
-			int tmp0 = value[0];
-			int tmp1 = value[1];
-			int tmp2 = value[2];
-			int tmp3 = value[3];
-			int tmp4 = value[4];
-			int tmp5 = value[5];
-			if (dir == 0) {
-				value[0] = tmp3;
-				value[3] = tmp5;
-				value[5] = tmp2;
-				value[2] = tmp0;
-			} else if (dir == 1) {
-				value[0] = tmp2;
-				value[2] = tmp5;
-				value[5] = tmp3;
-				value[3] = tmp0;
-			} else if (dir == 2) {
-				value[0] = tmp4;
-				value[4] = tmp5;
-				value[5] = tmp1;
-				value[1] = tmp0;
-			} else if (dir == 3) {
-				value[0] = tmp1;
-				value[1] = tmp5;
-				value[5] = tmp4;
-				value[4] = tmp0;
-			}
-		}
+//		private void dicestate(int dir) {
+//			int tmp0 = value[0];
+//			int tmp1 = value[1];
+//			int tmp2 = value[2];
+//			int tmp3 = value[3];
+//			int tmp4 = value[4];
+//			int tmp5 = value[5];
+//			if (dir == 0) {
+//				value[0] = tmp3;
+//				value[3] = tmp5;
+//				value[5] = tmp2;
+//				value[2] = tmp0;
+//			} else if (dir == 1) {
+//				value[0] = tmp2;
+//				value[2] = tmp5;
+//				value[5] = tmp3;
+//				value[3] = tmp0;
+//			} else if (dir == 2) {
+//				value[0] = tmp4;
+//				value[4] = tmp5;
+//				value[5] = tmp1;
+//				value[1] = tmp0;
+//			} else if (dir == 3) {
+//				value[0] = tmp1;
+//				value[1] = tmp5;
+//				value[5] = tmp4;
+//				value[4] = tmp0;
+//			}
+//		}
 
 	}
 

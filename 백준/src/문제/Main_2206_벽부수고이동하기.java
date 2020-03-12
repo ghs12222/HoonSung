@@ -70,45 +70,6 @@ public class Main_2206_벽부수고이동하기 {
 
 	}
 
-//	private static void dfs(int y, int x) {
-//		if (y == N - 1 && x == M - 1) {
-//			arrival = true;
-//			return;
-//		}
-//
-//
-//		for (int d = 0; d < 4; d++) {
-//			int ix = x + dx[d];
-//			int iy = y + dy[d];
-//			if (!safe(iy, ix))
-//				continue;
-//			if (map[iy][ix] == 0 && !flag[iy][ix]) {
-//				flag[iy][ix] = true;
-//				step++;
-//				if (cntmap[iy][ix] == 0 || cntmap[iy][ix] > step) {
-//					cntmap[iy][ix] = step;
-//				}
-//
-//				dfs(iy, ix);
-//				flag[iy][ix] = false;
-//				step--;
-//			} else if (map[iy][ix] == 1 && !flag[iy][ix] && !boom) {
-//				flag[iy][ix] = true;
-//				step++;
-//				boom = true;
-//				if (cntmap[iy][ix] == 0 || cntmap[iy][ix] > step) {
-//					cntmap[iy][ix] = step;
-//				}
-//				dfs(iy, ix);
-//				flag[iy][ix] = false;
-//				step--;
-//				boom = false;
-//			}
-//
-//		}
-//
-//	}
-
 	private static boolean safe(int y, int x) {
 		if (x >= 0 && y >= 0 && x < M && y < N)
 			return true;
