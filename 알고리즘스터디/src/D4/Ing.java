@@ -9,44 +9,43 @@ import java.util.StringTokenizer;
 public class Ing {
 	
 	static int T, N;
-	static int[] mapx, mapy;
+	static int[] xmap, ymap, flag;
 	static double tax;
-	static int[] flag;
 	static long res;
-	static StringBuilder sb = new StringBuilder();
 	static PriorityQueue<Point> pq;
+	static StringBuilder sb = new StringBuilder();
 	
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
-		pq = new PriorityQueue<Point>();
-		
 		T = Integer.parseInt(br.readLine());
 		for (int t = 1; t <= T; t++) {
 			N = Integer.parseInt(br.readLine());
-			mapx = new int[N];
-			mapy = new int[N];
+			xmap = new int[N];
+			ymap = new int[N];
 			flag = new int[N];
+			pq = new PriorityQueue<Point>();
+			
 			st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < N; i++) {
-				mapx[i] = Integer.parseInt(st.nextToken());
+				xmap[i] = Integer.parseInt(st.nextToken());
 			}
 			st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < N; i++) {
-				mapy[i] = Integer.parseInt(st.nextToken());
+				ymap[i] = Integer.parseInt(st.nextToken());
 			}
-			tax = Double.parseDouble(br.readLine());
 			for (int i = 0; i < N; i++) {
 				flag[i] = i;
 			}
-			
+			tax = Double.parseDouble(br.readLine());
 			for (int i = 0; i < N; i++) {
 				for (int j = i+1; j < N; j++) {
-					long su = (long) Math.pow(mapx[i] - mapx[j], 2) + (long) Math.pow(mapy[i] - mapy[j], 2);
+					long su = (long)Math.pow(xmap[i] - xmap[j], 2) + (long)Math.pow(ymap[i] - ymap[j], 2);
 					pq.add(new Point(i,j,su));
 				}
 			}
 			
+			res = 0;
 			int cnt = 0;
 			int size = pq.size();
 			for (int i = 0; i < size; i++) {
@@ -56,37 +55,39 @@ public class Ing {
 				if(flag[p.from] == flag[p.to])
 					continue;
 				else if(flag[p.from] != flag[p.to]) {
-					int from = p.from;
-					int to = p.to;
+					int from = flag[p.from];
+					int to = flag[p.to];
 					res += p.dist;
-					for (int k = 0; k < N; k++) {
-						if(flag[k] == from) {
-							flag[k] = to;
+					cnt++;
+					for (int j = 0; j < N; j++) {
+						if(flag[j] == to) {
+							flag[j] = from;
 						}
 					}
-					
 				}
 			}
-			sb.append(res).append("\n");
+			
+			sb.append("#").append(t).append(" ").append((long)Math.round(res*tax)).append("\n");
+			
 		}
 		System.out.println(sb);
+		
 	}
 	
-	private static class Point implements Comparable<Point>{
+	static class Point implements Comparable<Point>{
 		int from;
 		int to;
 		long dist;
-
 		public Point(int from, int to, long dist) {
 			super();
 			this.from = from;
 			this.to = to;
 			this.dist = dist;
 		}
-
 		@Override
 		public int compareTo(Point o) {
 			return Long.compare(this.dist, o.dist);
 		}
 	}
+	
 }

@@ -3,113 +3,115 @@ package D4;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.StringReader;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Solution_1251_하나로 {
-	
+
 	static int T, N;
-	static double E;
-	static long[][] islands;
-	static long[][] graph; // 정점들 간의 거리 그래프
+	static int[] xmap, ymap;
+	static int[] flag;
+	static double tax;
+	static long res;
+	static PriorityQueue<Point> pq;
 	static StringBuilder sb = new StringBuilder();
-	
-	public static void main(String[] args) throws NumberFormatException, IOException {
+
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
-		T = Integer.parseInt(br.readLine());
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		T = Integer.parseInt(st.nextToken());
 		for (int t = 1; t <= T; t++) {
-			sb.append("#").append(t).append(" ");
-			///////////////////////////////////
+			pq = new PriorityQueue<Point>();
 			N = Integer.parseInt(br.readLine());
-			StringTokenizer xLine = new StringTokenizer(br.readLine());
-			StringTokenizer yLine = new StringTokenizer(br.readLine());
-			
-			islands = new long[N][2];
+			xmap = new int[N];
+			ymap = new int[N];
+			flag = new int[N];
+
+			st = new StringTokenizer(br.readLine());
 			for (int i = 0; i < N; i++) {
-				islands[i] = new long[] {Long.parseLong(xLine.nextToken()), Long.parseLong(yLine.nextToken())};
+				xmap[i] = Integer.parseInt(st.nextToken());
 			}
-			
-			E = Double.parseDouble(br.readLine());
-			/////////////////////////////////
-			graph = new long[N][N];
-			long[] from, to;
-			for (int r = 0; r < N; r++) {
-				from = islands[r];
-				for (int c = r+1; c < N; c++) {
-					to = islands[c];
-					graph[c][r] = graph[r][c] = (from[0] - to[0]) * (from[0] - to[0]) + (from[1] + to[1]) * (from[1] + to[1]);
+			st = new StringTokenizer(br.readLine());
+			for (int i = 0; i < N; i++) {
+				ymap[i] = Integer.parseInt(st.nextToken());
+			}
+			tax = Double.parseDouble(br.readLine());
+			int union = 1;
+			for (int i = 0; i < N; i++) {
+				flag[i] = union++;
+			}
+//			for (int i = 0; i < N; i++) {
+//				flag[i] = i;
+//			}
+//			System.out.println("flag = " + Arrays.toString(flag));
+			for (int i = 0; i < N; i++) {
+				for (int j = i + 1; j < N; j++) {
+					long su = (long) Math.pow(xmap[i] - xmap[j], 2) + (long) Math.pow(ymap[i] - ymap[j], 2);
+					pq.add(new Point(i, j, su));
 				}
 			}
-			
-			double cost = prim(0) * E;
-			sb.append(Math.round(cost));
-			sb.append("\n");
-		}
-		System.out.println(sb);
-	}
-
-	private static double prim(int start) {
-		
-		//MST에 들어가지 않은 녀석득
-		PriorityQueue<Edge> pq = new PriorityQueue<>();
-		//모든 정점들을 다 관리..
-		Edge[] dynamicGraph = new Edge[N];
-
-		
-		//아래 코드  잘못됨..
-		for (int n = 0; n < dynamicGraph.length; n++) {
-			dynamicGraph[n] = new Edge(n, Long.MAX_VALUE);
-			if(n==start) {
-				dynamicGraph[n].cost = 0;
-			}
-			pq.add(dynamicGraph[n]);
-		}
-		
-		long cost = 0;
-		while(!pq.isEmpty()) {
-			Edge front = pq.poll(); //MST에 포함되는 녀석
-			cost += front.cost;
-			
-			//자식 탐색
-			for (int i = 0; i < dynamicGraph.length; i++) {
-				Edge child = dynamicGraph[i];
-				// pq: 비 MST
-				if(pq.contains(child)) {
-					long tempCost = graph[front.idx][child.idx];
-					if(tempCost < child.cost) {
-						child.cost = tempCost;
-						pq.remove(child);
-						pq.offer(child);
+//			System.out.println("pq = " + pq.toString());
+			res = 0;
+			int cnt = 0;
+			int size = pq.size();
+			for (int i = 0; i < size; i++) {
+				Point p = pq.poll();
+				if (cnt == N - 1)
+					break;
+				if (flag[p.from] == flag[p.to])
+					continue;
+				else if (flag[p.from] != flag[p.to]) {
+					int from = flag[p.from];
+					int to = flag[p.to];
+					res += p.dist;
+					cnt++;
+					for (int k = 0; k < N; k++) {
+						if (flag[k] == to) {
+							flag[k] = from;
+						}
 					}
 				}
+
 			}
+
+			sb.append("#").append(t).append(" ").append((long) (Math.round(res * tax))).append("\n");
 		}
-		
-		return cost;
-		
+		System.out.println(sb);
+
 	}
-	
-	static class Edge implements Comparable<Edge> {
-		int idx;
-		long cost;
-		public Edge(int idx, long cost) {
-			super();
-			this.idx = idx;
-			this.cost = cost;
+
+	static class Point implements Comparable<Point> {
+		int from;
+		int to;
+		long dist;
+
+		public Point(int from, int to, long dist) {
+			this.from = from;
+			this.to = to;
+			this.dist = dist;
 		}
+
+		@Override
+		public int compareTo(Point o) {
+			// TODO Auto-generated method stub
+//			return Long.compare(this.dist, o.dist);
+			if(this.dist < o.dist) {
+				return -1;
+			}
+			else if(this.dist>o.dist) {
+				return 1;
+			}
+			else
+				return 0;
+
+		}
+
 		@Override
 		public String toString() {
-			return "Edge [idx=" + idx + ", cost=" + cost + "]";
+			return "Point [from=" + from + ", to=" + to + ", dist=" + dist + "]";
 		}
-		@Override
-		public int compareTo(Edge o) {
-			
-//			return this.cost - o.cost>0 ? 1 : -1;
-			return Long.compare(this.cost, o.cost);
-		}
-		
+
 	}
-	
+
 }
