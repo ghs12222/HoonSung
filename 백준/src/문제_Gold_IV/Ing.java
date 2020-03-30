@@ -3,104 +3,105 @@ package 문제_Gold_IV;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Ing {
 
-	static int N, M, Len;
-	static int[][] fix_map, map;
-	static boolean[][] flag;
-	static int Enemy, Enemycnt, kill;
-	static int[] Archer;
-	static int Max;
-	static PriorityQueue<Point> que, delete;
-	
+	static int K, W, H;
+	static int[][] map;
+	static boolean[][][] flag;
+	static int[] dx = { 0, 1, 0, -1 };
+	static int[] dy = { -1, 0, 1, 0 };
+	static int[] hdx = { 1, 2, 2, 1, -1, -2, -2, -1 };
+	static int[] hdy = { 2, 1, -1, -2, -2, -1, 1, 2 };
+	static int res;
+	static PriorityQueue<Point> pq;
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		que = new PriorityQueue<Point>();
-		delete = new PriorityQueue<Point>();
-		
-		N = Integer.parseInt(st.nextToken());
-		M = Integer.parseInt(st.nextToken());
-		Len = Integer.parseInt(st.nextToken());
-		
-		fix_map = new int[N+1][M];
-		map = new int[N+1][M];
-		Archer = new int[3];
-		Enemy = 0;
-		
-		for (int i = 0; i < N; i++) {
+		pq = new PriorityQueue<Point>();
+		K = Integer.parseInt(st.nextToken());
+		st = new StringTokenizer(br.readLine());
+		W = Integer.parseInt(st.nextToken());
+		H = Integer.parseInt(st.nextToken());
+
+		map = new int[H][W];
+		flag = new boolean[H][W][K + 1];
+
+		for (int i = 0; i < H; i++) {
 			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < M; j++) {
-				fix_map[i][j] = Integer.parseInt(st.nextToken());
-				if(fix_map[i][j] == 1)
-					Enemy++;
+			for (int j = 0; j < W; j++) {
+				map[i][j] = Integer.parseInt(st.nextToken());
 			}
 		}
-		
-		
-		Max = Integer.MIN_VALUE;
-		Combi(0,0);
-		
+
+		pq.add(new Point(0, 0, K, 0));
+
+		Arrays.fill(flag[0][0], true);
+		gameStart();
+		System.out.println(res);
+
 	}
-	
-	private static void Combi(int start, int count) {
-		if(count == 3) {
-			for (int i = 0; i < N+1; i++) {
-				System.arraycopy(fix_map[i], 0, map[i], 0, M);
+
+	private static void gameStart() {
+
+		while (!pq.isEmpty()) {
+			Point p = pq.poll();
+
+			if (p.x == W - 1 && p.y == H - 1) {
+				res = p.depth;
+				break;
 			}
-			
-			Enemycnt = Enemy;
-			kill = 0;
-			GameStart();
-			Max = Math.max(Max, kill);
-			return ;
+
+			for (int d = 0; d < 4; d++) {
+				int ix = p.x + dx[d];
+				int iy = p.y + dy[d];
+				if (!safe(iy, ix) || flag[iy][ix][p.cnt])
+					continue;
+				if (map[iy][ix] == 0) {
+					pq.add(new Point(iy, ix, p.cnt, p.depth + 1));
+					flag[iy][ix][p.cnt] = true;
+				}
+			}
+
+			if (p.cnt == 0)
+				continue;
+			for (int d = 0; d < 8; d++) {
+				int ix = p.x + hdx[d];
+				int iy = p.y + hdy[d];
+				if (!safe(iy, ix) || flag[iy][ix][p.cnt])
+					continue;
+				if (map[iy][ix] == 0) {
+					pq.add(new Point(iy, ix, p.cnt - 1, p.depth + 1));
+					flag[iy][ix][p.cnt] = true;
+				}
+			}
+
 		}
-		
-		for (int i = start; i < M; i++) {
-			Archer[count] = i;
-			Combi(i+1, count+1);
-		}
 	}
-	
-	private static void GameStart() {
-		
+
+	static boolean safe(int y, int x) {
+		if (x >= 0 && x < W && y >= 0 && y < H)
+			return true;
+		else
+			return false;
 	}
-	
-	
-	private static void Down() {
-		
-	}
-	
-	private static class Point {
+
+	static class Point {
 		int y;
 		int x;
+		int cnt;
 		int depth;
-		
-		public Point(int y, int x, int depth) {
+
+		public Point(int y, int x, int cnt, int depth) {
 			super();
 			this.y = y;
 			this.x = x;
+			this.cnt = cnt;
 			this.depth = depth;
-		}
-		
-		
-		public Point(int y, int x) {
-			super();
-			this.y = y;
-			this.x = x;
-		}
-		
-	}
-	
-	private static void Print() {
-		for (int i = 0; i < N+1; i++) {
-			for (int j = 0; j < M; j++) {
-				System.out.print(map[i][j]);
-			}
-			System.out.println();
 		}
 	}
 

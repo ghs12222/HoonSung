@@ -81,16 +81,16 @@ public class Main_17406_배열돌리기4 {
 //				map[R[target]-k][C[target]-k] = map[R[target]-k+1][C[target]-k];
 //			}
 			
-			for (int i = 0; i < k*2+1; i++) {
+			for (int i = 0; i < k*2; i++) {
 				map[R[target]-k+i][C[target]-k] = map[R[target]-k+i+1][C[target]-k];
 			}
-			for (int i = 0; i < k*2+1; i++) {
+			for (int i = 0; i < k*2; i++) {
 				map[R[target]+k][C[target]-k+i] = map[R[target]+k][C[target]-k+i+1];
 			}
-			for (int i = 0; i < k*2+1; i++) {
+			for (int i = 0; i < k*2; i++) {
 				map[R[target]+k-i][C[target]+k] = map[R[target]+k-i-1][C[target]-k];
 			}
-			for (int i = 0; i < k*2+1; i++) {
+			for (int i = 0; i < k*2; i++) {
 				map[R[target]-k][C[target]+k-i] = map[R[target]-k][C[target]+k-i-1];
 			}
 			map[R[target]-k][C[target]-k+1] = tmp;
