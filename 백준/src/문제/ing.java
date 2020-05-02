@@ -3,125 +3,73 @@ package 문제;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class ing { // 아기상어
+public class ing { // 상범빌딩
 
-	static int N;
-	static int[][] map;
-	static boolean[][] flag;
-	static int[] dx = { 0, 1, 0, -1 };
-	static int[] dy = { -1, 0, 1, 0 };
-	static int AgiSize, Eatcnt;
-	static int Step, Stepcnt;
-	static PriorityQueue<Point> que;
+	static int L, R, C;
+	static char[][][] map;
+	static boolean[][][] flag;
+	static int[] dx = { 0, 1, 0, -1, 0, 0 };
+	static int[] dy = { 1, 0, -1, 0, 0, 0 };
+	static int[] dz = { 0, 0, 0, 0, 1, -1 };
+	static Queue<Point> que;
+	static StringBuilder sb = new StringBuilder();
 
 	public static void main(String[] args) throws IOException {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
-		que = new PriorityQueue<Point>();
+		do {
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			L = Integer.parseInt(st.nextToken());
+			R = Integer.parseInt(st.nextToken());
+			C = Integer.parseInt(st.nextToken());
+			map = new char[L][R][C];
+			flag = new boolean[L][R][C];
 
-		N = Integer.parseInt(st.nextToken());
-		map = new int[N][N];
-		flag = new boolean[N][N];
-
-		for (int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
-			for (int j = 0; j < N; j++) {
-				map[i][j] = Integer.parseInt(st.nextToken());
-				if (map[i][j] == 9) {
-					que.add(new Point(i, j, 0));
-					map[i][j] = 0;
-					flag[i][j] = true;
-				}
-			}
-		}
-
-		AgiSize = 2;
-		Eatcnt = 0;
-		Step = 0;
-		Stepcnt = 0;
-		gameStart();
-
-		System.out.println(Step);
-
-	}
-
-	private static void gameStart() {
-		while (!que.isEmpty()) {
-			int QueSize = que.size();
-
-			Point p = que.poll();
-
-			for (int k = 0; k < QueSize; k++) {
-				if (map[p.y][p.x] != 0 && map[p.y][p.x] < AgiSize) {
-					flag = new boolean[N][N];
-					flag[p.y][p.x] = true;
-					map[p.y][p.x] = 0;
-					que.clear();
-					que.add(new Point(p.y, p.x, 0));
-					Eatcnt++;
-					if (Eatcnt == AgiSize) {
-						AgiSize++;
-						Eatcnt = 0;
-					}
-//				System.out.println(Stepcnt);
-					Step += p.depth;
-					Stepcnt = 0;
-					break;
-				}
-
-				for (int d = 0; d < 4; d++) {
-					int ix = p.x + dx[d];
-					int iy = p.y + dy[d];
-					if (!safe(iy, ix) || flag[iy][ix])
-						continue;
-					if (map[iy][ix] <= AgiSize) {
-						que.add(new Point(iy, ix, p.depth + 1));
-						flag[iy][ix] = true;
+			for (int k = 0; k < L; k++) {
+				for (int i = 0; i < R; i++) {
+					String s = br.readLine();
+					for (int j = 0; j < C; j++) {
+						map[k][i][j] = s.charAt(j);
 					}
 				}
 			}
-			Stepcnt++;
-		}
+			System.out.println("1");
+			for (int k = 0; k < L; k++) {
+				for (int i = 0; i < R; i++) {
+					for (int j = 0; j < C; j++) {
+						System.out.print(map[k][i][j]);
+					}
+					System.out.println("0");
+					System.out.println();
+				}
+				System.out.println();
+			}
+
+		} while (!(L == 0 && R == 0 && C == 0));
+
 	}
 
-	private static boolean safe(int y, int x) {
-		if (y >= 0 && x >= 0 && y < N && x < N)
+	static boolean safe(int z, int y, int x) {
+		if (y >= 0 && x >= 0 && z >= 0 && z < L && y < R && x < C)
 			return true;
 		else
 			return false;
 	}
 
-	private static class Point implements Comparable<Point> {
+	static class Point {
+		int z;
 		int y;
 		int x;
-		int depth;
 
-		public Point(int y, int x, int depth) {
+		public Point(int z, int y, int x) {
 			super();
+			this.z = z;
 			this.y = y;
 			this.x = x;
-			this.depth = depth;
 		}
 
-		@Override
-		public int compareTo(Point o) {
-			if (this.depth > o.depth)
-				return 1;
-			else if (this.depth == o.depth) {
-				if (this.y > o.y)
-					return 1;
-				else if (this.y == o.y) {
-					if (this.x > o.x)
-						return 1;
-					else
-						return -1;
-				}
-				return -1;
-			}
-			return -1;
-		}
 	}
+
 }
