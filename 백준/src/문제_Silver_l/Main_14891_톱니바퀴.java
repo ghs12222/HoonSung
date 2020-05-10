@@ -11,6 +11,7 @@ public class Main_14891_톱니바퀴 {
 	static boolean[] move;
 	static int K;
 	static int score;
+	static int count;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -22,7 +23,6 @@ public class Main_14891_톱니바퀴 {
 				chain[i][j] = s.charAt(j)-'0';
 			}
 		}
-		
 		K = Integer.parseInt(br.readLine());
 		for (int i = 0; i < K; i++) {
 			st = new StringTokenizer(br.readLine());
@@ -34,6 +34,7 @@ public class Main_14891_톱니바퀴 {
 		}
 		
 		score = 0;
+		count = 0;
 		for (int i = 0; i < 4; i++) {
 			if(chain[i][0] == 1) {
 				score += (int) Math.pow(2, i);
@@ -43,11 +44,11 @@ public class Main_14891_톱니바퀴 {
 	}
 
 	private static void gameStart(int target, int dir) {
-		if(target+1<4 && !move[target] &&chain[target][2]==chain[target+1][6]) {
+		if(target+1<4 && !move[target+1] &&chain[target][2]!=chain[target+1][6]) {
 			move[target] = true;
 			gameStart(target+1,dir*-1);
 		}
-		else if(target-1>=0 && !move[target] && chain[target][6] == chain[target-1][2]) {
+		if(target-1>=0 && !move[target-1] && chain[target][6] != chain[target-1][2]) {
 			move[target] = true;
 			gameStart(target-1, dir*-1);
 		}

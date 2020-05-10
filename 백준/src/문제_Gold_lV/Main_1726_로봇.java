@@ -91,30 +91,62 @@ public class Main_1726_로봇 {
 	private static void bfs() {
 		while (!que.isEmpty()) {
 			int size = que.size();
-			Print();
+//			Print();
 			for (int s = 0; s < size; s++) {
 				Point p = que.poll();
 				if (p.x == ex && p.y == ey) {
-					int fuck = Math.abs(p.d - ed);
-					if (fuck == 0) {
-						if (flag[p.d][p.y][p.x] > p.step)
-							flag[p.d][p.y][p.x] = p.step;
-					} else if (fuck == 1) {
-						if (flag[p.d][p.y][p.x] > p.step + 1)
-							flag[p.d][p.y][p.x] = p.step + 1;
-					} else if (fuck == 2) {
-						if (flag[p.d][p.y][p.x] > p.step + 2)
-							flag[p.d][p.y][p.x] = p.step + 2;
-					} else if (fuck == 3) {
-						if (flag[p.d][p.y][p.x] > p.step + 1)
-							flag[p.d][p.y][p.x] = p.step + 1;
+					for (int d = 0; d < 4; d++) {
+						int id = Math.abs(p.d - d);
+						if (map[p.y][p.x] == 0) {
+							if (flag[d][p.y][p.x] > p.step && id == 0) {
+								flag[d][p.y][p.x] = p.step;
+							} else if (flag[d][p.y][p.x] > p.step + 1 && id == 1) {
+								flag[d][p.y][p.x] = p.step + 1;
+							} else if (flag[d][p.y][p.x] > p.step + 2 && id == 2) {
+								flag[d][p.y][p.x] = p.step + 2;
+							} else if (flag[d][p.y][p.x] > p.step + 1 && id == 3) {
+								flag[d][p.y][p.x] = p.step + 1;
+							}
+						}
+						if(step > flag[ed][ey][ex])
+						step = flag[ed][ey][ex];
 					}
-					if(step > flag[p.d][p.y][p.x])
-						step = flag[p.d][p.y][p.x];
+
+//					int fuck = Math.abs(p.d - ed);
+//					if (fuck == 0) {
+//						if (flag[p.d][p.y][p.x] > p.step)
+//							flag[p.d][p.y][p.x] = p.step;
+//					} else if (fuck == 1) {
+//						if (flag[p.d][p.y][p.x] > p.step + 1)
+//							flag[p.d][p.y][p.x] = p.step + 1;
+//					} else if (fuck == 2) {
+//						if (flag[p.d][p.y][p.x] > p.step + 2)
+//							flag[p.d][p.y][p.x] = p.step + 2;
+//					} else if (fuck == 3) {
+//						if (flag[p.d][p.y][p.x] > p.step + 1)
+//							flag[p.d][p.y][p.x] = p.step + 1;
+//					}
+//					if(step > flag[p.d][p.y][p.x])
+//						step = flag[p.d][p.y][p.x];
+
+//					if (fuck == 0) {
+//						if (flag[p.d][p.y][p.x] > p.step)
+//							flag[p.d][p.y][p.x] = p.step;
+//					} else if (fuck == 1) {
+//						if (flag[p.d][p.y][p.x] > p.step + 1)
+//							flag[p.d][p.y][p.x] = p.step + 1;
+//					} else if (fuck == 2) {
+//						if (flag[p.d][p.y][p.x] > p.step + 2)
+//							flag[p.d][p.y][p.x] = p.step + 2;
+//					} else if (fuck == 3) {
+//						if (flag[p.d][p.y][p.x] > p.step + 1)
+//							flag[p.d][p.y][p.x] = p.step + 1;
+//					}
+//					if(step > flag[p.d][p.y][p.x])
+//						step = flag[p.d][p.y][p.x];
 				}
 				for (int d = 0; d < 4; d++) {
 					int id = Math.abs(p.d - d);
-
 					for (int k = 1; k <= 3; k++) {
 						int ix = p.x + dx[d] * k;
 						int iy = p.y + dy[d] * k;
@@ -136,28 +168,11 @@ public class Main_1726_로봇 {
 							}
 
 						}
-
-//							if (flag[d][iy][ix] > p.step + 1) {
-//								if (id == 0) {
-//									que.add(new Point(iy, ix, d, p.step + 1));
-//									flag[d][iy][ix] = p.step + 1;
-//								} else if (id == 1) {
-//									que.add(new Point(iy, ix, d, p.step + 2));
-//									flag[d][iy][ix] = p.step + 2;
-//								} else if (id == 2)
-//									que.add(new Point(iy, ix, d, p.step + 3));
-//								else if (id == 3)
-//									que.add(new Point(iy, ix, d, p.step + 2));
-//
-//							}
 					}
-
 				}
 			}
 		}
 	}
-
-	
 
 	static boolean safe(int y, int x) {
 		if (x >= 0 && y >= 0 && x < M && y < N)
