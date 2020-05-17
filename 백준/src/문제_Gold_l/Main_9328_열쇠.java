@@ -1,4 +1,4 @@
-package Gold_l;
+package 문제_Gold_l;
 
 import java.io.BufferedReader;
 import java.io.IOException;
