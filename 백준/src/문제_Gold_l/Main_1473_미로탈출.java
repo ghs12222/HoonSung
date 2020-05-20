@@ -20,7 +20,6 @@ public class Main_1473_미로탈출 {
 	static class Point {
 		int y;
 		int x;
-		int 
 	}
 
 }

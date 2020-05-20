@@ -4,64 +4,57 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_17143_낚시왕 {
 	
-	static int N, M, K;
-	static int[] dx = {0, 0, 0, 1, -1};
-	static int[] dy = {0, -1, 1, 0, 0};
-	static int eatCnt;
-	static LinkedList<Point> shark;
+	static int N, M, T;
+	static LinkedList<Point>[] list;
+	static int res;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		shark = new LinkedList<Point>();
 		N = Integer.parseInt(st.nextToken());
 		M = Integer.parseInt(st.nextToken());
-		K = Integer.parseInt(st.nextToken());
+		T = Integer.parseInt(st.nextToken());
 		
-		for (int i = 0; i < K; i++) {
+		list = new LinkedList[M];
+		for (int i = 0; i < M; i++) {
+			list[i] = new LinkedList<Point>();
+		}
+		for (int i = 0; i < T; i++) {
 			st = new StringTokenizer(br.readLine());
-			int r = Integer.parseInt(st.nextToken());
-			int c = Integer.parseInt(st.nextToken());
-			int s = Integer.parseInt(st.nextToken());
-			int d = Integer.parseInt(st.nextToken());
-			int z = Integer.parseInt(st.nextToken());
-			shark.add(new Point(r,c,s,d,z));
+			int y = Integer.parseInt(st.nextToken())-1;
+			int x = Integer.parseInt(st.nextToken())-1;
+			int speed = Integer.parseInt(st.nextToken());
+			int dir = Integer.parseInt(st.nextToken());
+			int size = Integer.parseInt(st.nextToken());
+			list[x].add(new Point(y,x,speed,dir,size));
 		}
 		
-		eatCnt = 0;
-		for (int i = 0; i < N; i++) {
-			int min = Integer.MAX_VALUE;
-			int size = shark.size();
-			int target = -1;
-			int targetSize = -1;
-			for (int k = 0; k < size; k++) {
-				Point p = shark.get(k);
-				if(p.x == i && min>p.y) {
-					min = p.y;
-					target = k;
-					targetSize = p.size;
-				}
-			}
-			if(target != -1) {
-				eatCnt += targetSize;
-				shark.remove(target);	//이게 되나?
+		for (int i = 0; i < M; i++) {
+			if(!list[i].isEmpty()) {
+				Eat(i);
 			}
 			
 		}
 	}
 	
-	static boolean safe(int y, int x) {
-		if(x>=0 && y>=0 && x<M && y<N)
-			return true;
-		else
-			return false;
+	private static void Eat(int target) {
+		int size = list[target].size();
+		int min = Integer.MAX_VALUE;
+		int tg = 0;
+		for (int s = 0; s < size; s++) {
+			if(min<list[target].get(s).y) {
+				min = list[target].get(s).y;
+				tg = s;
+			}
+		}
+		res += list[target].get(tg).size;
+		list[target].remove(tg);
 	}
-	
+
 	static class Point {
 		int y;
 		int x;
@@ -77,5 +70,5 @@ public class Main_17143_낚시왕 {
 			this.size = size;
 		}
 	}
-
+	
 }

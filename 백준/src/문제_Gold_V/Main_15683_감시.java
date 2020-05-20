@@ -1,4 +1,4 @@
-package 문제_Gold_V;
+ package 문제_Gold_V;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -62,6 +62,7 @@ public class Main_15683_감시 {
 		}
 
 	}
+	
 
 	private static void GameStart() {
 		deadzonecnt = deadzone;
@@ -72,7 +73,9 @@ public class Main_15683_감시 {
 			if (p.cameraType == 1) {
 				int ix = p.x + dx[dir];
 				int iy = p.y + dy[dir];
-				while (!safe(iy, ix)) {
+				while (safe(iy, ix)) {
+					if(map[iy][ix] == 6)
+						break;
 					if (!flag[iy][ix] && map[iy][ix] == 0) {
 						flag[iy][ix] = true;
 						deadzonecnt--;
@@ -81,34 +84,33 @@ public class Main_15683_감시 {
 					iy += dy[dir];
 				}
 			} else if (p.cameraType == 2) {
-				int ix = p.x + dx[dir];
-				int iy = p.y + dy[dir];
-				while (!safe(iy, ix)) {
-					if (!flag[iy][ix] && map[iy][ix] == 0) {
-						flag[iy][ix] = true;
-						deadzonecnt--;
+				for (int i = 0; i < 2; i++) {
+					dir += i+1;
+					if(dir > 3)
+						dir -= 4;
+					int ix = p.x + dx[dir];
+					int iy = p.y + dy[dir];
+					while (safe(iy, ix)) {
+						if(map[iy][ix] == 6)
+							break;
+						if (!flag[iy][ix] && map[iy][ix] == 0) {
+							flag[iy][ix] = true;
+							deadzonecnt--;
+						}
+						ix += dx[dir];
+						iy += dy[dir];
 					}
-					ix += dx[dir];
-					iy += dy[dir];
-				}
-				ix = p.x - dx[dir];
-				iy = p.y - dy[dir];
-				while (!safe(iy, ix)) {
-					if (!flag[iy][ix] && map[iy][ix] == 0) {
-						flag[iy][ix] = true;
-						deadzonecnt--;
-					}
-					ix += dx[dir];
-					iy += dy[dir];
 				}
 			} else if (p.cameraType == 3) {
 				for (int i = 0; i < 2; i++) {
 					dir += i;
-					if(dir + i > 3)
-						dir-=3;
+					if(dir == 4)
+						dir = 0;
 					int ix = p.x + dx[dir];
 					int iy = p.y + dy[dir];
-					while (!safe(iy, ix)) {
+					while (safe(iy, ix)) {
+						if(map[iy][ix] == 6)
+							break;
 						if (!flag[iy][ix] && map[iy][ix] == 0) {
 							flag[iy][ix] = true;
 							deadzonecnt--;
@@ -121,11 +123,13 @@ public class Main_15683_감시 {
 			} else if (p.cameraType == 4) {
 				for (int i = 0; i < 3; i++) {
 					dir += i;
-					if(dir + i > 3)
-						dir-=3;
+					if(dir > 3)
+						dir = 0;
 					int ix = p.x + dx[dir];
 					int iy = p.y + dy[dir];
-					while (!safe(iy, ix)) {
+					while (safe(iy, ix)) {
+						if(map[iy][ix] == 6)
+							break;
 						if (!flag[iy][ix] && map[iy][ix] == 0) {
 							flag[iy][ix] = true;
 							deadzonecnt--;
@@ -136,19 +140,18 @@ public class Main_15683_감시 {
 					
 				}
 			} else if (p.cameraType == 5) {
-				for (int i = 0; i < 4; i++) {
-					dir += i;
-					if(dir + i > 3)
-						dir-=3;
-					int ix = p.x + dx[dir];
-					int iy = p.y + dy[dir];
-					while (!safe(iy, ix)) {
+				for (int d = 0; d < 4; d++) {
+					int ix = p.x + dx[d];
+					int iy = p.y + dy[d];
+					while (safe(iy, ix)) {
+						if(map[iy][ix] == 6)
+							break;
 						if (!flag[iy][ix] && map[iy][ix] == 0) {
 							flag[iy][ix] = true;
 							deadzonecnt--;
 						}
-						ix += dx[dir];
-						iy += dy[dir];
+						ix += dx[d];
+						iy += dy[d];
 					}
 					
 				}
